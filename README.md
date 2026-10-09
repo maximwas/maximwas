@@ -13,7 +13,7 @@ Independent full-stack developer from Ukraine. I build websites and web applicat
 ## What I do
 
 | | |
-|---|
+|---|---|
 | **Websites** — modern sites on Next.js, React and TypeScript, from a finished design or an agreed structure, with SEO and accessibility in place. | **Business web applications** — user accounts, booking systems, internal tools, integrations and process automation. |
 | **Fast launches on Framer** — landing pages and small sites on a tight timeline, without losing quality. | **Support and development** — bug fixes, new features, updates and performance work on existing projects. |
 
