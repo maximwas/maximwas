@@ -2,7 +2,8 @@ import math
 import os
 from urllib.parse import quote
 
-OUT = os.path.dirname(os.path.abspath(__file__))
+# The script lives in scripts/, the README and assets in the repo root.
+OUT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 W, H = 1280, 360
 CX, CY, R = 1030, 180, 140
 POINTS = 200
@@ -11,7 +12,7 @@ DURATION = 28
 TILT = 0.42
 SANS = "Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif"
 MONO = "'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace"
-LABELS = {11: "NEXT.JS", 37: "REACT", 63: "TYPESCRIPT", 89: "NODE", 115: "SEO", 141: "API", 167: "FRAMER", 191: "DESIGN"}
+LABELS = {11: "NEXT.JS", 37: "REACT", 63: "TYPESCRIPT", 89: "NODE", 115: "NESTJS", 141: "POSTGRES", 167: "MCP", 191: "AI"}
 THEMES = {
     "light": {"bg": "#ffffff", "fg": "#0d0e12", "muted": "#0d0e12"},
     "dark": {"bg": "#0d0e12", "fg": "#e6e6e6", "muted": "#e6e6e6"},
@@ -67,13 +68,13 @@ def banner(theme):
                 f'<animate attributeName="fill-opacity" values="{";".join(f"{v:.2f}" for v in label_ops)}" {anim}/>'
                 "</text>"
             )
-    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="Maksym Vasianin — Websites that bring clients. Apps that save hours.">
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="Maksym Vasianin — full-stack developer. Web apps and AI products, end to end in TypeScript.">
 <rect width="{W}" height="{H}" fill="{t['bg']}"/>
 <rect x="0.5" y="0.5" width="{W - 1}" height="{H - 1}" fill="none" stroke="{t['fg']}" stroke-opacity="0.15"/>
 <text x="64" y="92" fill="{t['muted']}" fill-opacity="0.6" font-family="{MONO}" font-size="16" letter-spacing="3">MAKSYM VASIANIN — FULL-STACK DEVELOPER</text>
-<text x="62" y="168" fill="{t['fg']}" font-family="{SANS}" font-size="54" font-weight="700" letter-spacing="-1.5">Websites that bring clients.</text>
-<text x="62" y="232" fill="{t['fg']}" font-family="{SANS}" font-size="54" font-weight="700" letter-spacing="-1.5">Apps that save hours.</text>
-<text x="64" y="290" fill="{t['muted']}" fill-opacity="0.7" font-family="{SANS}" font-size="20">Websites and web apps for businesses · maksymvasianin.com</text>
+<text x="62" y="168" fill="{t['fg']}" font-family="{SANS}" font-size="54" font-weight="700" letter-spacing="-1.5">Web apps and AI products,</text>
+<text x="62" y="232" fill="{t['fg']}" font-family="{SANS}" font-size="54" font-weight="700" letter-spacing="-1.5">end to end in TypeScript.</text>
+<text x="64" y="290" fill="{t['muted']}" fill-opacity="0.7" font-family="{SANS}" font-size="20">React · Next.js · Node.js · 5+ years in production · Ukraine</text>
 <g fill="{t['fg']}">{''.join(dots)}</g>
 <g fill="{t['fg']}" font-family="{MONO}" font-size="11" font-weight="600" text-anchor="middle">{''.join(labels)}</g>
 </svg>
@@ -101,75 +102,58 @@ def themed(light, dark, alt, extra=""):
 CONTACTS = [
     ("maksymvasianin.com", "googlechrome", "https://maksymvasianin.com", "Website"),
     ("Telegram", "telegram", "https://t.me/wmm_02", "Telegram"),
+    ("CV", "readdotcv", "https://cv.maksymvasianin.com", "CV"),
     ("LinkedIn", "linkedin", "https://www.linkedin.com/in/m-vasianin/", "LinkedIn"),
     ("Email", "gmail", "mailto:vasanin02@gmail.com", "Email"),
     ("Support on Patreon", "patreon", "https://www.patreon.com/cw/VasianinMaksim", "Patreon"),
 ]
 STACK = [
-    ("TypeScript", "typescript"), ("React", "react"), ("Next.js", "nextdotjs"), ("Node.js", "nodedotjs"),
-    ("NestJS", "nestjs"), ("Tailwind CSS", "tailwindcss"), ("Framer", "framer"), ("Figma", "figma"),
-    ("Firebase", "firebase"), ("Vercel", "vercel"),
+    "TypeScript", "React", "Next.js", "Node.js", "NestJS", "PostgreSQL (Supabase)", "Firebase", "React Native",
+    "Tailwind CSS", "Claude and OpenAI APIs", "MCP", "Vitest", "Playwright", "Docker", "AWS",
 ]
 STREAK = "https://streak-stats.demolab.com?user=maximwas&hide_border=true&date_format=j%20M%5B%20Y%5D"
 STREAK_LIGHT = STREAK + "&background=FFFFFF&stroke=E6E6E6&ring=0D0E12&fire=0D0E12&currStreakNum=0D0E12&sideNums=0D0E12&currStreakLabel=0D0E12&sideLabels=0D0E12&dates=6B6B6B"
 STREAK_DARK = STREAK + "&background=0D0E12&stroke=2A2B30&ring=E6E6E6&fire=E6E6E6&currStreakNum=E6E6E6&sideNums=E6E6E6&currStreakLabel=E6E6E6&sideLabels=E6E6E6&dates=9A9A9A"
-LANGS = "https://github-readme-stats.vercel.app/api/top-langs/?username=maximwas&layout=compact&hide_border=true&langs_count=6"
-LANGS_LIGHT = LANGS + "&bg_color=ffffff&title_color=0d0e12&text_color=0d0e12"
-LANGS_DARK = LANGS + "&bg_color=0d0e12&title_color=e6e6e6&text_color=e6e6e6"
 MARKET = "maksym-vasianin.px-to-tailwind-plus"
 
 
 def readme():
     contacts = "\n  ".join(badge(*c) for c in CONTACTS)
-    stack = " · ".join(name for name, _ in STACK)
+    stack = " · ".join(STACK)
     banner_img = themed("./assets/banner-light.svg", "./assets/banner-dark.svg",
-                        "Maksym Vasianin — Websites that bring clients. Apps that save hours.", ' width="100%"')
+                        "Maksym Vasianin — full-stack developer. Web apps and AI products, end to end in TypeScript.", ' width="100%"')
     streak = themed(STREAK_LIGHT, STREAK_DARK, "GitHub contribution streak", ' height="170"')
-    langs = themed(LANGS_LIGHT, LANGS_DARK, "Most used languages", ' height="170"')
     return f"""{banner_img}
 
 <p>
   {contacts}
 </p>
 
-Independent full-stack developer from Ukraine. I build websites and web applications for businesses — from the first conversation to a launched product, and support after launch. You work with me directly.
-
-## What I do
-
-| | |
-| --- | --- |
-| **Websites** — modern sites on Next.js, React and TypeScript, from a finished design or an agreed structure, with SEO and accessibility in place. | **Business web applications** — user accounts, booking systems, internal tools, integrations and process automation. |
-| **Fast launches on Framer** — landing pages and small sites on a tight timeline, without losing quality. | **Support and development** — bug fixes, new features, updates and performance work on existing projects. |
-
-## How I work
-
-| 01 · Discovery | 02 · Planning | 03 · Development | 04 · Launch |
-| --- | --- | --- | --- |
-| I get to know the project, define the goals and the result you expect. | I estimate the scope and timeline, and choose the right approach to build it. | I build the functionality, implement the design and integrate the services you need. | Testing, publishing the project and support after release. |
+Full-stack developer from Zhytomyr, Ukraine, writing production code since 2021. I build web apps and AI features end to end: React and Next.js on the front end, Node.js and NestJS on the back end, chatbots, AI agents and MCP servers on the Claude and OpenAI APIs.
 
 ## Stack
 
 {stack}
 
-## Open source
+## Projects
 
 | Project | What it does | |
 | --- | --- | --- |
-| [**framer-sitewright**](https://github.com/maximwas/framer-sitewright) | MCP server and CLI that let AI agents build and edit Framer sites, with a local journal you can undo. | [Docs](https://maximwas.github.io/framer-sitewright/) |
-| [**px-to-tailwind-plus**](https://github.com/maximwas/px-to-tailwind-plus) | VS Code and Cursor extension: type `p-16px`, get `p-4`; Tailwind v3 and v4. | <a href="https://marketplace.visualstudio.com/items?itemName={MARKET}"><img alt="Installs" src="https://img.shields.io/visual-studio-marketplace/i/{MARKET}?label=installs&color=0d0e12&style=flat-square"></a> |
+| [**pixelwright**](https://github.com/maximwas/pixelwright) | MCP server and Figma plugin that let AI agents (Claude Code, Cursor, Codex) read and edit the Figma file you have open, through the Plugin API: no token, no rate limits. TypeScript, Node.js, WebSockets. | [Docs](https://maximwas.github.io/pixelwright/) |
+| [**saldo**](https://github.com/maximwas/saldo) | Personal finance PWA: balances, spending, upcoming payments and the money actually free to spend, each number explained. Shared ledgers with roles, works offline, MCP connector for AI assistants. Next.js 16, React 19, Supabase (Postgres, RLS), TanStack Query, Cloudflare Workers. | In development |
+| [**px-to-tailwind-plus**](https://github.com/maximwas/px-to-tailwind-plus) | VS Code and Cursor extension: type `p-16px`, get `p-4`; Tailwind v3 and v4. | [Marketplace](https://marketplace.visualstudio.com/items?itemName={MARKET}) |
 
 ## Activity
 
 <p>
   {streak}
-  {langs}
 </p>
 
 ---
 
 <p align="center">
-  Open for new projects → <a href="https://maksymvasianin.com"><b>maksymvasianin.com</b></a><br>
-  Українською: незалежний Full-Stack розробник — сайти та вебзастосунки для бізнесу · <a href="https://maksymvasianin.com/ua">maksymvasianin.com/ua</a>
+  CV → <a href="https://cv.maksymvasianin.com"><b>cv.maksymvasianin.com</b></a> · <a href="https://maksymvasianin.com">maksymvasianin.com</a><br>
+  Українською: Full-Stack розробник — React, Next.js, Node.js, TypeScript · <a href="https://maksymvasianin.com/ua">maksymvasianin.com/ua</a>
 </p>
 """
 
