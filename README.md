@@ -1,4 +1,4 @@
-<picture><source media="(prefers-color-scheme: dark)" srcset="./assets/banner-dark.svg"><img alt="Maksym Vasianin — full-stack developer. Web apps and AI products, end to end in TypeScript." src="./assets/banner-light.svg" width="100%"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="./assets/banner-dark.svg?v=2618b8ad"><img alt="Maksym Vasianin — full-stack developer. Web apps and AI products, end to end in TypeScript." src="./assets/banner-light.svg?v=2618b8ad" width="100%"></picture>
 
 <p>
   <a href="https://maksymvasianin.com"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/maksymvasianin.com-e6e6e6?style=for-the-badge&logo=googlechrome&logoColor=0d0e12"><img alt="Website" src="https://img.shields.io/badge/maksymvasianin.com-0d0e12?style=for-the-badge&logo=googlechrome&logoColor=white"></picture></a>
@@ -6,7 +6,6 @@
   <a href="https://cv.maksymvasianin.com"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/CV-e6e6e6?style=for-the-badge&logo=readdotcv&logoColor=0d0e12"><img alt="CV" src="https://img.shields.io/badge/CV-0d0e12?style=for-the-badge&logo=readdotcv&logoColor=white"></picture></a>
   <a href="https://www.linkedin.com/in/m-vasianin/"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/LinkedIn-e6e6e6?style=for-the-badge&logo=linkedin&logoColor=0d0e12"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-0d0e12?style=for-the-badge&logo=linkedin&logoColor=white"></picture></a>
   <a href="mailto:vasanin02@gmail.com"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Email-e6e6e6?style=for-the-badge&logo=gmail&logoColor=0d0e12"><img alt="Email" src="https://img.shields.io/badge/Email-0d0e12?style=for-the-badge&logo=gmail&logoColor=white"></picture></a>
-  <a href="https://www.patreon.com/cw/VasianinMaksim"><picture><source media="(prefers-color-scheme: dark)" srcset="https://img.shields.io/badge/Support_on_Patreon-e6e6e6?style=for-the-badge&logo=patreon&logoColor=0d0e12"><img alt="Patreon" src="https://img.shields.io/badge/Support_on_Patreon-0d0e12?style=for-the-badge&logo=patreon&logoColor=white"></picture></a>
 </p>
 
 Full-stack developer from Zhytomyr, Ukraine, writing production code since 2021. I build web apps and AI features end to end: React and Next.js on the front end, Node.js and NestJS on the back end, chatbots, AI agents and MCP servers on the Claude and OpenAI APIs.

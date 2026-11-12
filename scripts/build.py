@@ -1,3 +1,4 @@
+import hashlib
 import math
 import os
 from urllib.parse import quote
@@ -105,7 +106,6 @@ CONTACTS = [
     ("CV", "readdotcv", "https://cv.maksymvasianin.com", "CV"),
     ("LinkedIn", "linkedin", "https://www.linkedin.com/in/m-vasianin/", "LinkedIn"),
     ("Email", "gmail", "mailto:vasanin02@gmail.com", "Email"),
-    ("Support on Patreon", "patreon", "https://www.patreon.com/cw/VasianinMaksim", "Patreon"),
 ]
 STACK = [
     "TypeScript", "React", "Next.js", "Node.js", "NestJS", "PostgreSQL (Supabase)", "Firebase", "React Native",
@@ -120,7 +120,9 @@ MARKET = "maksym-vasianin.px-to-tailwind-plus"
 def readme():
     contacts = "\n  ".join(badge(*c) for c in CONTACTS)
     stack = " · ".join(STACK)
-    banner_img = themed("./assets/banner-light.svg", "./assets/banner-dark.svg",
+    # The content hash in the query busts GitHub's 5-minute image cache after every banner change.
+    version = hashlib.sha1(banner("light").encode()).hexdigest()[:8]
+    banner_img = themed(f"./assets/banner-light.svg?v={version}", f"./assets/banner-dark.svg?v={version}",
                         "Maksym Vasianin — full-stack developer. Web apps and AI products, end to end in TypeScript.", ' width="100%"')
     streak = themed(STREAK_LIGHT, STREAK_DARK, "GitHub contribution streak", ' height="170"')
     return f"""{banner_img}
